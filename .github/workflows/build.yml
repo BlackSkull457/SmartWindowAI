@@ -2,16 +2,14 @@ name: Build Qt Project
 
 on:
 push:
+pull_request:
 
 jobs:
-
 windows:
-
-```
 runs-on: windows-latest
 
+```
 steps:
-
   - uses: actions/checkout@v4
 
   - uses: jurplel/install-qt-action@v4
