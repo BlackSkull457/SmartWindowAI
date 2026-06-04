@@ -10,10 +10,10 @@ RCC_DIR = build/rcc
 UI_DIR = build/ui
 
 SOURCES += \
-    /src/main.cpp \
-    /src/SmartAI.cpp
+    src/main.cpp \
+    src/SmartAI.cpp
 
 HEADERS += \
-    /src/SmartAI.h
+    src/SmartAI.h
 
-RESOURCES += /src/qml.qrc
+RESOURCES += src/qml.qrc
