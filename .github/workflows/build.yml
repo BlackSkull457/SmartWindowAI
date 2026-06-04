@@ -6,37 +6,37 @@ on:
 
 jobs:
     build-windows:
-    runs-on: windows-latest
+        runs-on: windows-latest
 
 
-    steps:
-        - name: Checkout
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout
+            uses: actions/checkout@v4
 
-        - name: Install Qt
-        uses: jurplel/install-qt-action@v4
-        with:
-            version: '6.8.2'
+            - name: Install Qt
+            uses: jurplel/install-qt-action@v4
+            with:
+                version: '6.8.2'
 
-        - name: Verify Files
-        shell: pwsh
-        run: |
-            Get-ChildItem -Recurse
+            - name: Verify Files
+            shell: pwsh
+            run: |
+                Get-ChildItem -Recurse
 
-        - name: Build
-        shell: cmd
-        run: |
-            qmake build\SmartWindowAI.pro
-            mingw32-make
+            - name: Build
+            shell: cmd
+            run: |
+                qmake build\SmartWindowAI.pro
+                mingw32-make
 
-        - name: Find EXE
-        shell: pwsh
-        run: |
-            Get-ChildItem -Recurse *.exe
+            - name: Find EXE
+            shell: pwsh
+            run: |
+                Get-ChildItem -Recurse *.exe
 
-        - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-            name: SmartWindowAI-Windows
-            path: '**/*.exe'
+            - name: Upload Artifact
+            uses: actions/upload-artifact@v4
+            with:
+                name: SmartWindowAI-Windows
+                path: '**/*.exe'
 
