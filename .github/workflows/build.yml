@@ -1,0 +1,31 @@
+name: Build Qt Project
+
+on:
+push:
+
+jobs:
+
+windows:
+
+```
+runs-on: windows-latest
+
+steps:
+
+  - uses: actions/checkout@v4
+
+  - uses: jurplel/install-qt-action@v4
+    with:
+      version: '6.8.2'
+
+  - name: Build
+    shell: cmd
+    run: |
+      qmake SmartWindowAI.pro
+      mingw32-make
+
+  - uses: actions/upload-artifact@v4
+    with:
+      name: SmartWindowAI-EXE
+      path: SmartWindowAI.exe
+```
