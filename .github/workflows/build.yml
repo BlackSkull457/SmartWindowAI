@@ -26,8 +26,16 @@ jobs:
           $toolsDir = $env:IQTA_TOOLS
           Write-Host "IQTA_TOOLS: $toolsDir"
           $mingwPath = Get-ChildItem -Path $toolsDir -Filter "mingw*" -Directory | Sort-Object Name -Descending | Select-Object -First 1
-          Write-Host "MinGW found: $($mingwPath.FullName)"
-          echo "$($mingwPath.FullName)\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          Write-Host "MinGW found: $($mingwPath.FullName)\bin"
+          # Prepend Qt MinGW to PATH so it takes priority over any system MinGW
+          $newPath = "$($mingwPath.FullName)\bin;" + $env:PATH
+          echo "PATH=$newPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Verify Compiler
+        shell: cmd
+        run: |
+          where g++
+          g++ --version
 
       - name: Verify Files
         shell: pwsh
@@ -46,7 +54,7 @@ jobs:
           Get-ChildItem -Recurse *.exe
 
       - name: Deploy Qt Dependencies
-        shell: pwsh
+        shell: cmd
         run: |
           windeployqt release\SmartWindowAI.exe
 
