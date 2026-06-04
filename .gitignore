@@ -1,0 +1,14 @@
+build/
+*.pro.user
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.app
+Makefile
+moc_*
+qrc_*
+qmlcache_loader.cpp
+
