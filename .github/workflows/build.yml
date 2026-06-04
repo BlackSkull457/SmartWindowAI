@@ -29,6 +29,7 @@ jobs:
         with:
           version: '6.8.2'
           arch: win64_mingw
+          modules: charts
 
       - name: Verify Files
         shell: pwsh
