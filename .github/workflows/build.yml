@@ -1,31 +1,13 @@
 name: Build SmartWindowAI
 
 on:
-push:
-workflow_dispatch:
+  push:
+  workflow_dispatch:
 
 jobs:
-build-windows:
-runs-on: windows-latest
+  build-windows:
+    runs-on: windows-latest
 
-steps:
-  - name: Checkout
-    uses: actions/checkout@v4
-
-  - name: Install Qt
-    uses: jurplel/install-qt-action@v4
-    with:
-      version: '6.8.2'
-
-  - name: Build
-    shell: cmd
-    run: |
-      qmake build/SmartWindowAI.pro
-      mingw32-make
-
-  - name: Upload Artifact
-    uses: actions/upload-artifact@v4
-    with:
-      name: SmartWindowAI-Windows
-      path: SmartWindowAI.exe
-
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
